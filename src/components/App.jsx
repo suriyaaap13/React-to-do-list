@@ -7,16 +7,16 @@ function App() {
     inputSetter(event.target.value);
   }
 
-  // function handleClick(event){
-  //   inputSetter(prevValue =>{
-  //     if(prevValue.length>0){
-  //       let li = document.createElement("li");
-  //       li.textContent = prevValue;
-  //       document.getElementById('list-container').appendChild(li);
-  //     }
-  //   });
-  //   inputSetter("");
-  // }
+  function handleClick(event) {
+    inputSetter((prevValue) => {
+      if (prevValue.length > 0) {
+        let li = document.createElement("li");
+        li.textContent = prevValue;
+        document.getElementById("list-container").appendChild(li);
+      }
+    });
+    inputSetter("");
+  }
 
   return (
     <div className="container">
@@ -25,13 +25,12 @@ function App() {
       </div>
       <div className="form">
         <input type="text" onChange={handleChange} value={input} />
-        <button>
-          {/* onClick = {handleClick} */}
+        <button onClick={handleClick}>
           <span>Add</span>
         </button>
       </div>
       <div>
-        <ul>
+        <ul id="list-container">
           <li>A Item </li>
         </ul>
       </div>
@@ -40,4 +39,3 @@ function App() {
 }
 
 export default App;
-// id = "list-container"
