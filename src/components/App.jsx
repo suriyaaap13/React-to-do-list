@@ -2,18 +2,15 @@ import React, { useState } from "react";
 
 function App() {
   const [input, inputSetter] = useState("");
+  const [items, itemsSetter] = useState([]);
 
   function handleChange(event) {
     inputSetter(event.target.value);
   }
 
   function handleClick(event) {
-    inputSetter((prevValue) => {
-      if (prevValue.length > 0) {
-        let li = document.createElement("li");
-        li.textContent = prevValue;
-        document.getElementById("list-container").appendChild(li);
-      }
+    itemsSetter((prevValue) => {
+      return [...prevValue, input];
     });
     inputSetter("");
   }
@@ -30,8 +27,10 @@ function App() {
         </button>
       </div>
       <div>
-        <ul id="list-container">
-          <li>A Item </li>
+        <ul>
+          {items.map((todoitem) => {
+            return <li>{todoitem}</li>;
+          })}
         </ul>
       </div>
     </div>
